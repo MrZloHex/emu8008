@@ -6,221 +6,151 @@
 
 int row, col;
 
-const char *line_n10 = ""; 
-const char *line_n9 = "";
-const char *line_n8 = "";
-const char *line_n7 = "";
-const char *line_n6 = "";
-const char *line_n5 = "";
-const char *line_n4 = "";
-const char *line_n3 = "";
-const char *line_n2 = "";
-const char *line_n1 = "";
-const char *line = "";
-const char *line_1 = "";
-const char *line_2 = "";
-const char *line_3 = "";
-const char *line_4 = "";
-const char *line_5 = "";
-const char *line_6 = "";
-const char *line_7 = "";
-const char *line_8 = "";
-const char *line_9 = "";
-const char *line_10 = "";
+char *line[22];
 
-
-void print_8008 () {
-    mvwprintw(stdscr, (row/2)-5, (col - strlen(line_n4))/2, "%s", line_n4);
-    mvwprintw(stdscr, (row/2)-4, (col - strlen(line_n3))/2, "%s", line_n3);
-    mvwprintw(stdscr, (row/2)-3, (col - strlen(line_n2))/2, "%s", line_n2);
-    mvwprintw(stdscr, (row/2)-2, (col - strlen(line_n1))/2, "%s", line_n1);
-    mvwprintw(stdscr, (row/2)-1, (col - strlen(line))/2,    "%s", line);
-    mvwprintw(stdscr, (row/2),   (col - strlen(line_1))/2,  "%s", line_1);
-    mvwprintw(stdscr, (row/2)+1, (col - strlen(line_2))/2,  "%s", line_2);
-    mvwprintw(stdscr, (row/2)+2, (col - strlen(line_3))/2,  "%s", line_3);
-    mvwprintw(stdscr, (row/2)+3, (col - strlen(line_4))/2,  "%s", line_4);
-
-    mvwprintw(stdscr, (row/2)+5, (col - strlen(line_6))/2,  "%s", line_6);
-    mvwprintw(stdscr, (row/2)+6, (col - strlen(line_7))/2,  "%s", line_7);
-    mvwprintw(stdscr, (row/2)+7, (col - strlen(line_8))/2,  "%s", line_8);
-    mvwprintw(stdscr, (row/2)+8, (col - strlen(line_9))/2,  "%s", line_9);
-    mvwprintw(stdscr, (row/2)+9, (col - strlen(line_10))/2, "%s", line_10);
+void print_t(int y, int x, int amount) {
+    if (y >= 0 && x >= 0) {
+        for (int i = 0; i < amount; i++) {
+            mvwprintw(stdscr, i+y, x, "%s", line[i]);
+        }
+    }
+    else if (y < 0 && x < 0){
+        for (int i = 0; i < amount; i++) {
+            mvwprintw(stdscr, (row/2)-(amount/2)+i, (col - strlen(line[0]))/2, "%s", line[i]);
+        }
+    }
+    refresh();
 }
 
-void print_8008_ () {
-    mvwprintw(stdscr, (row/2)-11, (col - strlen(line_n10))/2, "%s", line_n10);
-    mvwprintw(stdscr, (row/2)-10, (col - strlen(line_n9))/2, "%s", line_n9);
-    mvwprintw(stdscr, (row/2)-9, (col - strlen(line_n8))/2, "%s", line_n8);
-    mvwprintw(stdscr, (row/2)-8, (col - strlen(line_n7))/2, "%s", line_n7);
-    mvwprintw(stdscr, (row/2)-7, (col - strlen(line_n6))/2, "%s", line_n6);
-    mvwprintw(stdscr, (row/2)-6, (col - strlen(line_n5))/2, "%s", line_n5);
-    mvwprintw(stdscr, (row/2)-5, (col - strlen(line_n4))/2, "%s", line_n4);
-    mvwprintw(stdscr, (row/2)-4, (col - strlen(line_n3))/2, "%s", line_n3);
-    mvwprintw(stdscr, (row/2)-3, (col - strlen(line_n2))/2, "%s", line_n2);
-    mvwprintw(stdscr, (row/2)-2, (col - strlen(line_n1))/2, "%s", line_n1);
-    mvwprintw(stdscr, (row/2)-1, (col - strlen(line))/2,    "%s", line);
-    mvwprintw(stdscr, (row/2),   (col - strlen(line_1))/2,  "%s", line_1);
-    mvwprintw(stdscr, (row/2)+1, (col - strlen(line_2))/2,  "%s", line_2);
-    mvwprintw(stdscr, (row/2)+2, (col - strlen(line_3))/2,  "%s", line_3);
-    mvwprintw(stdscr, (row/2)+3, (col - strlen(line_4))/2,  "%s", line_4);
-    mvwprintw(stdscr, (row/2)+4, (col - strlen(line_5))/2,  "%s", line_5);
-    mvwprintw(stdscr, (row/2)+5, (col - strlen(line_6))/2,  "%s", line_6);
-    mvwprintw(stdscr, (row/2)+6, (col - strlen(line_7))/2,  "%s", line_7);
-    mvwprintw(stdscr, (row/2)+7, (col - strlen(line_8))/2,  "%s", line_8);
-    mvwprintw(stdscr, (row/2)+8, (col - strlen(line_9))/2,  "%s", line_9);
-    mvwprintw(stdscr, (row/2)+9, (col - strlen(line_10))/2, "%s", line_10);
+
+void print_logo () {
+    line[0] = " ---#--#--#--#--#--#--#--#--#--- ";
+    line[1] = "|                               |";
+    line[2] = "|      ###   ###   ###   ###    |";
+    line[3] = " --   #   # #   # #   # #   #   |";
+    line[4] = "   |   ###  #   # #   #  ###    |";
+    line[5] = " --   #   # #   # #   # #   #   |";
+    line[6] = "|      ###   ###   ###   ###    |";
+    line[7] = "|                               |";
+    line[8] = " ---#--#--#--#--#--#--#--#--#--- ";
+    print_t(3, 7, 9);
+
+    refresh();
 }
 
-void print_info () {
-    mvwprintw(stdscr, 5, 10,"%s", line_n10);
-    mvwprintw(stdscr, 6, 10, "%s", line_n9);
-    mvwprintw(stdscr, 7, 10, "%s", line_n8);
-    mvwprintw(stdscr, 8, 10, "%s", line_n7);
-    mvwprintw(stdscr, 9, 10, "%s", line_n6);
-    mvwprintw(stdscr, 10, 10, "%s", line_n5);
-    mvwprintw(stdscr, 11, 10, "%s", line_n4);
-    mvwprintw(stdscr, 12, 10, "%s", line_n3);
-    mvwprintw(stdscr, 13, 10, "%s", line_n2);
-    mvwprintw(stdscr, 14, 10, "%s", line_n1);
-    mvwprintw(stdscr, 15, 10,    "%s", line);
-    mvwprintw(stdscr, 16, 10,  "%s", line_1);
-    mvwprintw(stdscr, 17, 10,  "%s", line_2);
-    mvwprintw(stdscr, 18, 10,  "%s", line_3);
-    mvwprintw(stdscr, 19, 10,  "%s", line_4);
-    mvwprintw(stdscr, 20, 10,  "%s", line_5);
-    mvwprintw(stdscr, 21, 10,  "%s", line_6);
-    mvwprintw(stdscr, 22, 10,  "%s", line_7);
-    mvwprintw(stdscr, 23, 10,  "%s", line_8);
-    mvwprintw(stdscr, 24, 10,  "%s", line_9);
-    mvwprintw(stdscr, 25, 10, "%s", line_10);
+
+void print_CPU(){
+    line[0]  = " ---8008 CPU:--------------------------------------------------------------- "; 
+    line[1]  = "|                                                                           |";
+    line[2]  = "|      DATA BUS BUFFER:        INSTRUCTION                                  |";
+    line[3]  = "|     [0 0 0 0  0 0 0 0]       REGISTER: 00                                 |";
+    line[4]  = "|         |        |                  |                                     |";
+    line[5]  = "|         V        V                  V                                     |";
+    line[6]  = "|  ====================================================================     |";
+    line[7]  = "|  ^     |           |                |                         |           |";
+    line[8]  = "|  |     V           V                V                         V           |";
+    line[9]  = "|  |  REG a: 0   REG b: 0          STACK:                   REGISTERS:      |";
+    line[10] = "|  |   |              |       PROGRAM COUNTER: 0000     ACCUMULATOR: 0000   |";
+    line[11] = "|  |   |              |       LEVEL NO. 1:     0000     REG B:       0000   |";
+    line[12] = "|  |   |-> CARRY: 0 <-|       LEVEL NO. 2:     0000     REG C:       0000   |";
+    line[13] = "|  |          |               LEVEL NO. 3:     0000     REG D:       0000   |";
+    line[14] = "|  |          V               LEVEL NO. 4:     0000     REG E:       0000   |";
+    line[15] = "|  |----<-FLAGS:              LEVEL NO. 5:     0000     REG H:       0000   |";
+    line[16] = "|           Z  0              LEVEL NO. 6:     0000     REG L:       0000   |";
+    line[17] = "|           C  0              LEVEL NO. 7:     0000                         |";
+    line[18] = "|           S  0                                                            |";
+    line[19] = "|           P  0                                                            |";
+    line[20] = "|                                                                           |";
+    line[21] = " --------------------------------------------------------------------------- ";
+    print_t(3, 45, 22);
 }
 
 void intro () {
     init_pair(MY_PAIR, COLOR_BLACK, COLOR_WHITE);
     attron(COLOR_PAIR(MY_PAIR));
-    line_n1 = "                               ";
-    line =    "    PLEASE MAKE FULL SCREEN    ";
-    line_1 =  "                              ";
-    mvwprintw(stdscr, (row/2)-2, (col - strlen(line_n1))/2, "%s", line_n1);
-    mvwprintw(stdscr, (row/2)-1, (col - strlen(line))/2, "%s", line);
-    mvwprintw(stdscr, (row/2),   (col - strlen(line_1))/2, "%s", line_1);
-    refresh();
+    line[0] = "                               ";
+    line[1] = "    PLEASE MAKE FULL SCREEN    ";
+    line[2] = "                              ";
+    print_t(-1, -1, 3);
     msleep(2000);   
     attroff(COLOR_PAIR(MY_PAIR));
 
     clear();
     refresh();
-    line = "8008";
-    mvwprintw(stdscr, (row/2)-1, (col - strlen(line))/2, "%s", line);
-    refresh();
+    line[0] = "8008";
+    print_t(-1, -1, 1);  
     msleep(300);
 
 
     clear();
     refresh();
-    line = "8 0 0 8";
-    mvwprintw(stdscr, (row/2)-1, (col - strlen(line))/2, "%s", line);
-    refresh();
+    line[0] = "8 0 0 8";
+    print_t(-1, -1, 1);
     msleep(300);
 
 
     clear();
     refresh();
-    line_n2 = " ___   ___   ___   ___ ";
-    line_n1 = "/   \\ /   \\ /   \\ /   \\";
-    line =    "\\___/ |   | |   | \\___/";
-    line_1 =  "/   \\ |   | |   | /   \\";
-    line_2 =  "\\___/ \\___/ \\___/ \\___/";
-    mvwprintw(stdscr, (row/2)-3, (col - strlen(line_n2))/2, "%s", line_n2);
-    mvwprintw(stdscr, (row/2)-2, (col - strlen(line_n1))/2, "%s", line_n1);
-    mvwprintw(stdscr, (row/2)-1, (col - strlen(line))/2,    "%s", line);
-    mvwprintw(stdscr, (row/2),   (col - strlen(line_1))/2,  "%s", line_1);
-    mvwprintw(stdscr, (row/2)+1, (col - strlen(line_2))/2,  "%s", line_2);
-    refresh();
+    line[0] = " ___   ___   ___   ___ ";
+    line[1] = "/   \\ /   \\ /   \\ /   \\";
+    line[2] = "\\___/ |   | |   | \\___/";
+    line[3] = "/   \\ |   | |   | /   \\";
+    line[4] = "\\___/ \\___/ \\___/ \\___/";
+    print_t(-1, -1, 5);
     msleep(300);
 
     
     clear();
     refresh();
-    line_n2 = " ###   ###   ###   ### ";
-    line_n1 = "#   # #   # #   # #   #";
-    line =    " ###  #   # #   #  ### ";
-    line_1 =  "#   # #   # #   # #   #";
-    line_2 =  " ###   ###   ###   ### ";
-    mvwprintw(stdscr, (row/2)-3, (col - strlen(line_n2))/2, "%s", line_n2);
-    mvwprintw(stdscr, (row/2)-2, (col - strlen(line_n1))/2, "%s", line_n1);
-    mvwprintw(stdscr, (row/2)-1, (col - strlen(line))/2,    "%s", line);
-    mvwprintw(stdscr, (row/2),   (col - strlen(line_1))/2,  "%s", line_1);
-    mvwprintw(stdscr, (row/2)+1, (col - strlen(line_2))/2,  "%s", line_2);
-    refresh();
+    line[0] = " ###   ###   ###   ### ";
+    line[1] = "#   # #   # #   # #   #";
+    line[2] = " ###  #   # #   #  ### ";
+    line[3] = "#   # #   # #   # #   #";
+    line[4] = " ###   ###   ###   ### ";
+    print_t(-1, -1, 5);
     msleep(300);
 
 
     clear();
     refresh();
-    line_n3 = " #####   #####   #####   ##### ";
-    line_n2 = "#     # #     # #     # #     #";
-    line_n1 = "#     # #     # #     # #     #";
-    line =    " #####  #     # #     #  ##### ";
-    line_1 =  "#     # #     # #     # #     #";
-    line_2 =  "#     # #     # #     # #     #";
-    line_3 =  " #####   #####   #####   ##### ";
-    mvwprintw(stdscr, (row/2)-4, (col - strlen(line_n3))/2, "%s", line_n3);
-    mvwprintw(stdscr, (row/2)-3, (col - strlen(line_n2))/2, "%s", line_n2);
-    mvwprintw(stdscr, (row/2)-2, (col - strlen(line_n1))/2, "%s", line_n1);
-    mvwprintw(stdscr, (row/2)-1, (col - strlen(line))/2,    "%s", line);
-    mvwprintw(stdscr, (row/2),   (col - strlen(line_1))/2,  "%s", line_1);
-    mvwprintw(stdscr, (row/2)+1, (col - strlen(line_2))/2,  "%s", line_2);
-    mvwprintw(stdscr, (row/2)+2, (col - strlen(line_3))/2,  "%s", line_3);
-    refresh();
+    line[0] = " #####   #####   #####   ##### ";
+    line[1] = "#     # #     # #     # #     #";
+    line[2] = "#     # #     # #     # #     #";
+    line[3] = " #####  #     # #     #  ##### ";
+    line[4] = "#     # #     # #     # #     #";
+    line[5] = "#     # #     # #     # #     #";
+    line[6] = " #####   #####   #####   ##### ";
+    print_t(-1, -1, 7);
     msleep(300);
 
 
     clear();
     refresh();
-    line_n4 = "  #####      #####      #####      #####  ";
-    line_n3 = " #     #    #     #    #     #    #     # ";
-    line_n2 = "#       #  #       #  #       #  #       #";
-    line_n1 = " #     #   #       #  #       #   #     # ";
-    line =    "  #####    #       #  #       #    #####  ";
-    line_1 =  " #     #   #       #  #       #   #     # ";
-    line_2 =  "#       #  #       #  #       #  #       #";
-    line_3 =  " #     #    #     #    #     #    #     # ";
-    line_4 =  "  #####      #####      #####      #####  ";
-    mvwprintw(stdscr, (row/2)-5, (col - strlen(line_n4))/2, "%s", line_n4);
-    mvwprintw(stdscr, (row/2)-4, (col - strlen(line_n3))/2, "%s", line_n3);
-    mvwprintw(stdscr, (row/2)-3, (col - strlen(line_n2))/2, "%s", line_n2);
-    mvwprintw(stdscr, (row/2)-2, (col - strlen(line_n1))/2, "%s", line_n1);
-    mvwprintw(stdscr, (row/2)-1, (col - strlen(line))/2,    "%s", line);
-    mvwprintw(stdscr, (row/2),   (col - strlen(line_1))/2,  "%s", line_1);
-    mvwprintw(stdscr, (row/2)+1, (col - strlen(line_2))/2,  "%s", line_2);
-    mvwprintw(stdscr, (row/2)+2, (col - strlen(line_3))/2,  "%s", line_3);
-    mvwprintw(stdscr, (row/2)+3, (col - strlen(line_4))/2,  "%s", line_4);
-    refresh();
+    line[0] = "  #####      #####      #####      #####  ";
+    line[1] = " #     #    #     #    #     #    #     # ";
+    line[2] = "#       #  #       #  #       #  #       #";
+    line[3] = " #     #   #       #  #       #   #     # ";
+    line[4] = "  #####    #       #  #       #    #####  ";
+    line[5] = " #     #   #       #  #       #   #     # ";
+    line[6] = "#       #  #       #  #       #  #       #";
+    line[7] = " #     #    #     #    #     #    #     # ";
+    line[8] = "  #####      #####      #####      #####  ";
+    print_t(-1, -1, 9);
     msleep(300);
 
 
     clear();
     refresh();
-    line_n4 = "         ######      ######      ######      ######         ";
-    line_n3 = "        ##    ##    ##    ##    ##    ##    ##    ##        ";
-    line_n2 = "       ##      ##  ##      ##  ##      ##  ##      ##       ";
-    line_n1 = "        ##    ##   ##      ##  ##      ##   ##    ##        ";
-    line =    "         ######    ##      ##  ##      ##    ######         ";
-    line_1 =  "        ##    ##   ##      ##  ##      ##   ##    ##        ";
-    line_2 =  "       ##      ##  ##      ##  ##      ##  ##      ##       ";
-    line_3 =  "        ##    ##    ##    ##    ##    ##    ##    ##        ";
-    line_4 =  "         ######      ######      ######      ######         ";
-    mvwprintw(stdscr, (row/2)-5, (col - strlen(line_n4))/2, "%s", line_n4);
-    mvwprintw(stdscr, (row/2)-4, (col - strlen(line_n3))/2, "%s", line_n3);
-    mvwprintw(stdscr, (row/2)-3, (col - strlen(line_n2))/2, "%s", line_n2);
-    mvwprintw(stdscr, (row/2)-2, (col - strlen(line_n1))/2, "%s", line_n1);
-    mvwprintw(stdscr, (row/2)-1, (col - strlen(line))/2,    "%s", line);
-    mvwprintw(stdscr, (row/2),   (col - strlen(line_1))/2,  "%s", line_1);
-    mvwprintw(stdscr, (row/2)+1, (col - strlen(line_2))/2,  "%s", line_2);
-    mvwprintw(stdscr, (row/2)+2, (col - strlen(line_3))/2,  "%s", line_3);
-    mvwprintw(stdscr, (row/2)+3, (col - strlen(line_4))/2,  "%s", line_4);
-    refresh();
+    line[0] = "         ######      ######      ######      ######         ";
+    line[1] = "        ##    ##    ##    ##    ##    ##    ##    ##        ";
+    line[2] = "       ##      ##  ##      ##  ##      ##  ##      ##       ";
+    line[3] = "        ##    ##   ##      ##  ##      ##   ##    ##        ";
+    line[4] = "         ######    ##      ##  ##      ##    ######         ";
+    line[5] = "        ##    ##   ##      ##  ##      ##   ##    ##        ";
+    line[6] = "       ##      ##  ##      ##  ##      ##  ##      ##       ";
+    line[7] = "        ##    ##    ##    ##    ##    ##    ##    ##        ";
+    line[8] = "         ######      ######      ######      ######         ";
+    print_t(-1, -1, 9);
     msleep(300);
 
     msleep(700);
@@ -228,480 +158,461 @@ void intro () {
 
     clear();
     refresh();
-    line_7 =  " ---                                                        ";
-    line_8 =  "    |                                                       ";
-    line_9 =  "     --                                                     ";
-    mvwprintw(stdscr, (row/2)-5, (col - strlen(line_n4))/2, "%s", line_n4);
-    mvwprintw(stdscr, (row/2)-4, (col - strlen(line_n3))/2, "%s", line_n3);
-    mvwprintw(stdscr, (row/2)-3, (col - strlen(line_n2))/2, "%s", line_n2);
-    mvwprintw(stdscr, (row/2)-2, (col - strlen(line_n1))/2, "%s", line_n1);
-    mvwprintw(stdscr, (row/2)-1, (col - strlen(line))/2,    "%s", line);
-    mvwprintw(stdscr, (row/2),   (col - strlen(line_1))/2,  "%s", line_1);
-    mvwprintw(stdscr, (row/2)+1, (col - strlen(line_2))/2,  "%s", line_2);
-    mvwprintw(stdscr, (row/2)+2, (col - strlen(line_3))/2,  "%s", line_3);
-    mvwprintw(stdscr, (row/2)+3, (col - strlen(line_4))/2,  "%s", line_4);
-
-    mvwprintw(stdscr, (row/2)+6, (col - strlen(line_7))/2,  "%s", line_7);
-    mvwprintw(stdscr, (row/2)+7, (col - strlen(line_8))/2,  "%s", line_8);
-    mvwprintw(stdscr, (row/2)+8, (col - strlen(line_9))/2,  "%s", line_9);
-    refresh();
+    line[0] =  "                                                            "; 
+    line[1] =  "                                                            ";
+    line[2] =  "                                                            ";
+    line[3] =  "                                                            ";
+    line[4] =  "                                                            ";
+    line[5] =  "                                                            ";
+    line[6] =  "         ######      ######      ######      ######         ";
+    line[7] =  "        ##    ##    ##    ##    ##    ##    ##    ##        ";
+    line[8] =  "       ##      ##  ##      ##  ##      ##  ##      ##       ";
+    line[9] =  "        ##    ##   ##      ##  ##      ##   ##    ##        ";
+    line[10] = "         ######    ##      ##  ##      ##    ######         ";
+    line[11] = "        ##    ##   ##      ##  ##      ##   ##    ##        ";
+    line[12] = "       ##      ##  ##      ##  ##      ##  ##      ##       ";
+    line[13] = "        ##    ##    ##    ##    ##    ##    ##    ##        ";
+    line[14] = "         ######      ######      ######      ######         ";
+    line[15] = "                                                            ";
+    line[16] = "                                                            ";
+    line[17] = " ---                                                        ";
+    line[18] = "    |                                                       ";
+    line[19] = "     --                                                     ";
+    line[20] = "                                                            ";                                                           
+    print_t(-1, -1, 21);
     msleep(100);
 
 
     clear();
     refresh(); 
-    line_6 =  "      1                                                     ";
-    line_7 =  " ---                                                        ";
-    line_8 =  "    |                                                       ";
-    line_9 =  "     --                                                     ";
-    line_10 = "    Vdd                                                     ";
-    print_8008( ); 
-    refresh();  
+    line[16] = "      1                                                     ";
+    line[17] = " ---                                                        ";
+    line[18] = "    |                                                       ";
+    line[19] = "     --                                                     ";
+    line[20] = "    Vdd                                                     ";  
+    print_t(-1, -1, 21);
     msleep(100) ; 
   
   
     clear();  
     refresh();  
-    line_6 =  "      1                                                     ";
-    line_7 =  " ---    --                                                  ";
-    line_8 =  "    |  |  |                                                 ";
-    line_9 =  "     --    --                                               ";
-    line_10 = "    Vdd                                                     ";
-    print_8008( ); 
-    refresh();  
+    line[16] = "      1                                                     ";
+    line[17] = " ---    --                                                  ";
+    line[18] = "    |  |  |                                                 ";
+    line[19] = "     --    --                                               ";
+    line[20] = "    Vdd                                                     ";
+    print_t(-1, -1, 21); 
     msleep(100) ; 
   
   
     clear();  
     refresh();  
-    line_6 =  "      1     2                                               ";
-    line_7 =  " ---    --                                                  ";
-    line_8 =  "    |  |  |                                                 ";
-    line_9 =  "     --    --                                               ";
-    line_10 = "    Vdd    D7                                               ";
-    print_8008( ); 
-    refresh();  
+    line[16] = "      1     2                                               ";
+    line[17] = " ---    --                                                  ";
+    line[18] = "    |  |  |                                                 ";
+    line[19] = "     --    --                                               ";
+    line[20] = "    Vdd    D7                                               ";
+    print_t(-1, -1, 21); 
     msleep(100) ; 
       
   
     clear();  
     refresh();  
-    line_6 =  "      1     2                                               ";
-    line_7 =  " ---    --    --                                            ";
-    line_8 =  "    |  |  |  |  |                                           ";
-    line_9 =  "     --    --    --                                         ";
-    line_10 = "    Vdd    D7                                               ";
-    print_8008( ); 
-    refresh();  
+    line[16] = "      1     2                                               ";
+    line[17] = " ---    --    --                                            ";
+    line[18] = "    |  |  |  |  |                                           ";
+    line[19] = "     --    --    --                                         ";
+    line[20] = "    Vdd    D7                                               ";
+    print_t(-1, -1, 21); 
     msleep(100) ; 
   
   
     clear();  
     refresh();  
-    line_6 =  "      1     2     3                                         ";
-    line_7 =  " ---    --    --                                            ";
-    line_8 =  "    |  |  |  |  |                                           ";
-    line_9 =  "     --    --    --                                         ";
-    line_10 = "    Vdd    D7    D6                                         ";
-    print_8008( ); 
-    refresh();  
+    line[16] = "      1     2     3                                         ";
+    line[17] = " ---    --    --                                            ";
+    line[18] = "    |  |  |  |  |                                           ";
+    line[19] = "     --    --    --                                         ";
+    line[20] = "    Vdd    D7    D6                                         ";
+    print_t(-1, -1, 21);  
     msleep(100) ; 
   
   
     clear();  
     refresh();  
-    line_6 =  "      1     2     3                                         ";
-    line_7 =  " ---    --    --    --                                      ";
-    line_8 =  "    |  |  |  |  |  |  |                                     ";
-    line_9 =  "     --    --    --    --                                   ";
-    line_10 = "    Vdd    D7    D6                                         ";
-    print_8008( ); 
-    refresh();  
+    line[16] = "      1     2     3                                         ";
+    line[17] = " ---    --    --    --                                      ";
+    line[18] = "    |  |  |  |  |  |  |                                     ";
+    line[19] = "     --    --    --    --                                   ";
+    line[20] = "    Vdd    D7    D6                                         ";
+    print_t(-1, -1, 21); 
     msleep(100) ; 
   
   
     clear();  
     refresh();  
-    line_6 =  "      1     2     3     4                                   ";
-    line_7 =  " ---    --    --    --                                      ";
-    line_8 =  "    |  |  |  |  |  |  |                                     ";
-    line_9 =  "     --    --    --    --                                   ";
-    line_10 = "    Vdd    D7    D6    D5                                   ";
-    print_8008( ); 
-    refresh();  
+    line[16] = "      1     2     3     4                                   ";
+    line[17] = " ---    --    --    --                                      ";
+    line[18] = "    |  |  |  |  |  |  |                                     ";
+    line[19] = "     --    --    --    --                                   ";
+    line[20] = "    Vdd    D7    D6    D5                                   ";
+    print_t(-1, -1, 21); 
     msleep(100) ; 
   
   
     clear();  
     refresh();  
-    line_6 =  "      1     2     3     4                                   ";
-    line_7 =  " ---    --    --    --    --                                ";
-    line_8 =  "    |  |  |  |  |  |  |  |  |                               ";
-    line_9 =  "     --    --    --    --    --                             ";
-    line_10 = "    Vdd    D7    D6    D5                                   ";
-    print_8008( ); 
-    refresh();  
+    line[16] = "      1     2     3     4                                   ";
+    line[17] = " ---    --    --    --    --                                ";
+    line[18] = "    |  |  |  |  |  |  |  |  |                               ";
+    line[19] = "     --    --    --    --    --                             ";
+    line[20] = "    Vdd    D7    D6    D5                                   ";
+    print_t(-1, -1, 21);
     msleep(100) ; 
   
   
     clear();  
     refresh();  
-    line_6 =  "      1     2     3     4     5                             ";
-    line_7 =  " ---    --    --    --    --                                ";
-    line_8 =  "    |  |  |  |  |  |  |  |  |                               ";
-    line_9 =  "     --    --    --    --    --                             ";
-    line_10 = "    Vdd    D7    D6    D5    D4                             ";
-    print_8008( ); 
-    refresh();  
+    line[16] = "      1     2     3     4     5                             ";
+    line[17] = " ---    --    --    --    --                                ";
+    line[18] = "    |  |  |  |  |  |  |  |  |                               ";
+    line[19] = "     --    --    --    --    --                             ";
+    line[20] = "    Vdd    D7    D6    D5    D4                             ";
+    print_t(-1, -1, 21);
     msleep(100) ; 
   
   
     clear();  
     refresh();  
-    line_6 =  "      1     2     3     4     5                             ";
-    line_7 =  " ---    --    --    --    --    --                          ";
-    line_8 =  "    |  |  |  |  |  |  |  |  |  |  |                         ";
-    line_9 =  "     --    --    --    --    --    --                       ";
-    line_10 = "    Vdd    D7    D6    D5    D4                             ";
-    print_8008( ); 
-    refresh();  
+    line[16] = "      1     2     3     4     5                             ";
+    line[17] = " ---    --    --    --    --    --                          ";
+    line[18] = "    |  |  |  |  |  |  |  |  |  |  |                         ";
+    line[19] = "     --    --    --    --    --    --                       ";
+    line[20] = "    Vdd    D7    D6    D5    D4                             ";
+    print_t(-1, -1, 21); 
     msleep(100) ; 
       
   
     clear();  
     refresh();  
-    line_6 =  "      1     2     3     4     5     6                       ";
-    line_7 =  " ---    --    --    --    --    --                          ";
-    line_8 =  "    |  |  |  |  |  |  |  |  |  |  |                         ";
-    line_9 =  "     --    --    --    --    --    --                       ";
-    line_10 = "    Vdd    D7    D6    D5    D4    D3                       ";
-    print_8008( ); 
-    refresh(); 
+    line[16] = "      1     2     3     4     5     6                       ";
+    line[17] = " ---    --    --    --    --    --                          ";
+    line[18] = "    |  |  |  |  |  |  |  |  |  |  |                         ";
+    line[19] = "     --    --    --    --    --    --                       ";
+    line[20] = "    Vdd    D7    D6    D5    D4    D3                       ";
+    print_t(-1, -1, 21);
     msleep(100) ;
  
  
     clear(); 
     refresh(); 
-    line_6 =  "      1     2     3     4     5     6                       ";
-    line_7 =  " ---    --    --    --    --    --    --                    ";
-    line_8 =  "    |  |  |  |  |  |  |  |  |  |  |  |  |                   ";
-    line_9 =  "     --    --    --    --    --    --    --                 ";
-    line_10 = "    Vdd    D7    D6    D5    D4    D3                       ";
-    print_8008( );
-    refresh(); 
+    line[16] = "      1     2     3     4     5     6                       ";
+    line[17] = " ---    --    --    --    --    --    --                    ";
+    line[18] = "    |  |  |  |  |  |  |  |  |  |  |  |  |                   ";
+    line[19] = "     --    --    --    --    --    --    --                 ";
+    line[20] = "    Vdd    D7    D6    D5    D4    D3                       ";
+    print_t(-1, -1, 21);
     msleep(100) ;
  
  
     clear(); 
     refresh(); 
-    line_6 =  "      1     2     3     4     5     6     7                 ";
-    line_7 =  " ---    --    --    --    --    --    --                    ";
-    line_8 =  "    |  |  |  |  |  |  |  |  |  |  |  |  |                   ";
-    line_9 =  "     --    --    --    --    --    --    --                 ";
-    line_10 = "    Vdd    D7    D6    D5    D4    D3    D2                 ";
-    print_8008( );
-    refresh(); 
+    line[16] = "      1     2     3     4     5     6     7                 ";
+    line[17] = " ---    --    --    --    --    --    --                    ";
+    line[18] = "    |  |  |  |  |  |  |  |  |  |  |  |  |                   ";
+    line[19] = "     --    --    --    --    --    --    --                 ";
+    line[20] = "    Vdd    D7    D6    D5    D4    D3    D2                 ";
+    print_t(-1, -1, 21);
     msleep(100) ;
  
  
     clear(); 
     refresh(); 
-    line_6 =  "      1     2     3     4     5     6     7                 ";
-    line_7 =  " ---    --    --    --    --    --    --    --              ";
-    line_8 =  "    |  |  |  |  |  |  |  |  |  |  |  |  |  |  |             ";
-    line_9 =  "     --    --    --    --    --    --    --    --           ";
-    line_10 = "    Vdd    D7    D6    D5    D4    D3    D2                 ";
-    print_8008( );
-    refresh(); 
+    line[16] = "      1     2     3     4     5     6     7                 ";
+    line[17] = " ---    --    --    --    --    --    --    --              ";
+    line[18] = "    |  |  |  |  |  |  |  |  |  |  |  |  |  |  |             ";
+    line[19] = "     --    --    --    --    --    --    --    --           ";
+    line[20] = "    Vdd    D7    D6    D5    D4    D3    D2                 ";
+    print_t(-1, -1, 21);
     msleep(100) ;
  
  
     clear(); 
     refresh(); 
-    line_6 =  "      1     2     3     4     5     6     7     8           ";
-    line_7 =  " ---    --    --    --    --    --    --    --              ";
-    line_8 =  "    |  |  |  |  |  |  |  |  |  |  |  |  |  |  |             ";
-    line_9 =  "     --    --    --    --    --    --    --    --           ";
-    line_10 = "    Vdd    D7    D6    D5    D4    D3    D2    D1           ";
-    print_8008( );
-    refresh(); 
+    line[16] = "      1     2     3     4     5     6     7     8           ";
+    line[17] = " ---    --    --    --    --    --    --    --              ";
+    line[18] = "    |  |  |  |  |  |  |  |  |  |  |  |  |  |  |             ";
+    line[19] = "     --    --    --    --    --    --    --    --           ";
+    line[20] = "    Vdd    D7    D6    D5    D4    D3    D2    D1           ";
+    print_t(-1, -1, 21); 
     msleep(100) ;
  
  
     clear(); 
     refresh(); 
-    line_6 =  "      1     2     3     4     5     6     7     8           ";
-    line_7 =  " ---    --    --    --    --    --    --    --    --        ";
-    line_8 =  "    |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |       ";
-    line_9 =  "     --    --    --    --    --    --    --    --    --     ";
-    line_10 = "    Vdd    D7    D6    D5    D4    D3    D2    D1           ";
-    print_8008( );
-    refresh(); 
+    line[16] = "      1     2     3     4     5     6     7     8           ";
+    line[17] = " ---    --    --    --    --    --    --    --    --        ";
+    line[18] = "    |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |       ";
+    line[19] = "     --    --    --    --    --    --    --    --    --     ";
+    line[20] = "    Vdd    D7    D6    D5    D4    D3    D2    D1           ";
+    print_t(-1, -1, 21);
     msleep(100) ;
  
  
     clear(); 
     refresh(); 
-    line_6 =  "      1     2     3     4     5     6     7     8     9     ";
-    line_7 =  " ---    --    --    --    --    --    --    --    --        ";
-    line_8 =  "    |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |       ";
-    line_9 =  "     --    --    --    --    --    --    --    --    --     ";
-    line_10 = "    Vdd    D7    D6    D5    D4    D3    D2    D1    D0     ";
-    print_8008( );
-    refresh(); 
+    line[16] = "      1     2     3     4     5     6     7     8     9     ";
+    line[17] = " ---    --    --    --    --    --    --    --    --        ";
+    line[18] = "    |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |       ";
+    line[19] = "     --    --    --    --    --    --    --    --    --     ";
+    line[20] = "    Vdd    D7    D6    D5    D4    D3    D2    D1    D0     ";
+    print_t(-1, -1, 21);
     msleep(100) ;
  
  
     clear(); 
     refresh(); 
-    line_n6 = "                                                           |";
-    line_n5 = "                                                           |";
-    line_n4 = "         ######      ######      ######      ######        |";
-    line_n3 = "        ##    ##    ##    ##    ##    ##    ##    ##       |";
-    line_n2 = "       ##      ##  ##      ##  ##      ##  ##      ##      |";
-    line_n1 = "        ##    ##   ##      ##  ##      ##   ##    ##       |";
-    line =    "         ######    ##      ##  ##      ##    ######        |";
-    line_1 =  "        ##    ##   ##      ##  ##      ##   ##    ##       |";
-    line_2 =  "       ##      ##  ##      ##  ##      ##  ##      ##      |";
-    line_3 =  "        ##    ##    ##    ##    ##    ##    ##    ##       |";
-    line_4 =  "         ######      ######      ######      ######        |";
-    line_5 =  "                                                           |";
-    line_6 =  "      1     2     3     4     5     6     7     8     9    |";
-    line_7 =  " ---    --    --    --    --    --    --    --    --    --- ";
-    line_8 =  "    |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |    ";
-    line_9 =  "     --    --    --    --    --    --    --    --    --     ";
-    line_10 = "    Vdd    D7    D6    D5    D4    D3    D2    D1    D0     ";
-    print_8008_();
-    refresh();
+    line[4] =  "                                                           |";
+    line[5] =  "                                                           |";
+    line[6] =  "         ######      ######      ######      ######        |";
+    line[7] =  "        ##    ##    ##    ##    ##    ##    ##    ##       |";
+    line[8] =  "       ##      ##  ##      ##  ##      ##  ##      ##      |";
+    line[9] =  "        ##    ##   ##      ##  ##      ##   ##    ##       |";
+    line[10] = "         ######    ##      ##  ##      ##    ######        |";
+    line[11] = "        ##    ##   ##      ##  ##      ##   ##    ##       |";
+    line[12] = "       ##      ##  ##      ##  ##      ##  ##      ##      |";
+    line[13] = "        ##    ##    ##    ##    ##    ##    ##    ##       |";
+    line[14] = "         ######      ######      ######      ######        |";
+    line[15] = "                                                           |";
+    line[16] = "      1     2     3     4     5     6     7     8     9    |";
+    line[17] = " ---    --    --    --    --    --    --    --    --    --- ";
+    line[18] = "    |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |    ";
+    line[19] = "     --    --    --    --    --    --    --    --    --     ";
+    line[20] = "    Vdd    D7    D6    D5    D4    D3    D2    D1    D0     ";
+    print_t(-1, -1, 21);
     msleep(100);
 
 
     clear();
     refresh();
-    line_n9 = "                                                     --     ";
-    line_n8 = "                                                       |    ";
-    line_n7 = "                                                        --- ";
-    print_8008_();
-    refresh();
+    line[0] =  "                                                            "; 
+    line[1] =  "                                                     --     ";
+    line[2] =  "                                                       |    ";
+    line[3] =  "                                                        --- ";
+    line[4] =  "                                                           |";
+    print_t(-1,-1, 21);
     msleep(100);
 
 
     clear();
     refresh();
-    line_n10= "                                                    Vcc     "; 
-    line_n9 = "                                                     --     ";
-    line_n8 = "                                                       |    ";
-    line_n7 = "                                                        --- ";
-    line_n6 = "                                                     10    |";
-    print_8008_();
-    refresh();
+    line[0] = "                                                    Vcc     "; 
+    line[1] = "                                                     --     ";
+    line[2] = "                                                       |    ";
+    line[3] = "                                                        --- ";
+    line[4] = "                                                     10    |";
+    print_t(-1, -1, 21);
     msleep(100);
 
 
     clear();
     refresh();
-    line_n10= "                                                    Vcc     "; 
-    line_n9 = "                                               --    --     ";
-    line_n8 = "                                                 |  |  |    ";
-    line_n7 = "                                                  --    --- ";
-    line_n6 = "                                                     10    |";
-    print_8008_();
-    refresh();
+    line[0] = "                                                    Vcc     "; 
+    line[1] = "                                               --    --     ";
+    line[2] = "                                                 |  |  |    ";
+    line[3] = "                                                  --    --- ";
+    line[4] = "                                                     10    |";
+    print_t(-1, -1, 21);
     msleep(100);
 
 
     clear();
     refresh();
-    line_n10= "                                               S2   Vcc     "; 
-    line_n9 = "                                               --    --     ";
-    line_n8 = "                                                 |  |  |    ";
-    line_n7 = "                                                  --    --- ";
-    line_n6 = "                                               11    10    |";
-    print_8008_();
-    refresh();
+    line[0] = "                                               S2   Vcc     "; 
+    line[1] = "                                               --    --     ";
+    line[2] = "                                                 |  |  |    ";
+    line[3] = "                                                  --    --- ";
+    line[4] = "                                               11    10    |";
+    print_t(-1, -1, 21);
     msleep(100);
     
 
     clear();
     refresh();
-    line_n10= "                                               S2   Vcc     "; 
-    line_n9 = "                                         --    --    --     ";
-    line_n8 = "                                           |  |  |  |  |    ";
-    line_n7 = "                                            --    --    --- ";
-    line_n6 = "                                               11    10    |";
-    print_8008_();
-    refresh();
+    line[0] = "                                               S2   Vcc     "; 
+    line[1] = "                                         --    --    --     ";
+    line[2] = "                                           |  |  |  |  |    ";
+    line[3] = "                                            --    --    --- ";
+    line[4] = "                                               11    10    |";
+    print_t(-1, -1, 21);
     msleep(100);
 
 
     clear();
     refresh();
-    line_n10= "                                         S1    S2   Vcc     "; 
-    line_n9 = "                                         --    --    --     ";
-    line_n8 = "                                           |  |  |  |  |    ";
-    line_n7 = "                                            --    --    --- ";
-    line_n6 = "                                         12    11    10    |";
-    print_8008_();
-    refresh();
+    line[0] = "                                         S1    S2   Vcc     "; 
+    line[1] = "                                         --    --    --     ";
+    line[2] = "                                           |  |  |  |  |    ";
+    line[3] = "                                            --    --    --- ";
+    line[4] = "                                         12    11    10    |";
+    print_t(-1, -1, 21);
     msleep(100);
 
 
     clear();
     refresh();
-    line_n10= "                                         S1    S2   Vcc     "; 
-    line_n9 = "                                   --    --    --    --     ";
-    line_n8 = "                                     |  |  |  |  |  |  |    ";
-    line_n7 = "                                      --    --    --    --- ";
-    line_n6 = "                                         12    11    10    |";
-    print_8008_();
-    refresh();
+    line[0] = "                                         S1    S2   Vcc     "; 
+    line[1] = "                                   --    --    --    --     ";
+    line[2] = "                                     |  |  |  |  |  |  |    ";
+    line[3] = "                                      --    --    --    --- ";
+    line[4] = "                                         12    11    10    |";
+    print_t(-1, -1, 21);
     msleep(100);
 
 
     clear();
     refresh();
-    line_n10= "                                   S0    S1    S2   Vcc     "; 
-    line_n9 = "                                   --    --    --    --     ";
-    line_n8 = "                                     |  |  |  |  |  |  |    ";
-    line_n7 = "                                      --    --    --    --- ";
-    line_n6 = "                                   13    12    11    10    |";
-    print_8008_();
-    refresh();
+    line[0] = "                                   S0    S1    S2   Vcc     "; 
+    line[1] = "                                   --    --    --    --     ";
+    line[2] = "                                     |  |  |  |  |  |  |    ";
+    line[3] = "                                      --    --    --    --- ";
+    line[4] = "                                   13    12    11    10    |";
+    print_t(-1, -1, 21);
     msleep(100);
 
 
     clear();
     refresh();
-    line_n10= "                                   S0    S1    S2   Vcc     "; 
-    line_n9 = "                             --    --    --    --    --     ";
-    line_n8 = "                               |  |  |  |  |  |  |  |  |    ";
-    line_n7 = "                                --    --    --    --    --- ";
-    line_n6 = "                                   13    12    11    10    |";
-    print_8008_();
-    refresh();
+    line[0] = "                                   S0    S1    S2   Vcc     "; 
+    line[1] = "                             --    --    --    --    --     ";
+    line[2] = "                               |  |  |  |  |  |  |  |  |    ";
+    line[3] = "                                --    --    --    --    --- ";
+    line[4] = "                                   13    12    11    10    |";
+    print_t(-1, -1, 21);
     msleep(100);
 
 
     clear();
     refresh();
-    line_n10= "                            SYNC   S0    S1    S2   Vcc     "; 
-    line_n9 = "                             --    --    --    --    --     ";
-    line_n8 = "                               |  |  |  |  |  |  |  |  |    ";
-    line_n7 = "                                --    --    --    --    --- ";
-    line_n6 = "                             14    13    12    11    10    |";
-    print_8008_();
-    refresh();
+    line[0] = "                            SYNC   S0    S1    S2   Vcc     "; 
+    line[1] = "                             --    --    --    --    --     ";
+    line[2] = "                               |  |  |  |  |  |  |  |  |    ";
+    line[3] = "                                --    --    --    --    --- ";
+    line[4] = "                             14    13    12    11    10    |";
+    print_t(-1, -1, 21);
     msleep(100);
 
 
     clear();
     refresh();
-    line_n10= "                            SYNC   S0    S1    S2   Vcc     "; 
-    line_n9 = "                       --    --    --    --    --    --     ";
-    line_n8 = "                         |  |  |  |  |  |  |  |  |  |  |    ";
-    line_n7 = "                          --    --    --    --    --    --- ";
-    line_n6 = "                             14    13    12    11    10    |";
-    print_8008_();
-    refresh();
+    line[0] = "                            SYNC   S0    S1    S2   Vcc     "; 
+    line[1] = "                       --    --    --    --    --    --     ";
+    line[2] = "                         |  |  |  |  |  |  |  |  |  |  |    ";
+    line[3] = "                          --    --    --    --    --    --- ";
+    line[4] = "                             14    13    12    11    10    |";
+    print_t(-1, -1, 21);
     msleep(100);
 
 
     clear();
     refresh();
-    line_n10= "                       t2   SYNC   S0    S1    S2   Vcc     "; 
-    line_n9 = "                       --    --    --    --    --    --     ";
-    line_n8 = "                         |  |  |  |  |  |  |  |  |  |  |    ";
-    line_n7 = "                          --    --    --    --    --    --- ";
-    line_n6 = "                       15    14    13    12    11    10    |";
-    print_8008_();
-    refresh();
+    line[0] = "                       t2   SYNC   S0    S1    S2   Vcc     "; 
+    line[1] = "                       --    --    --    --    --    --     ";
+    line[2] = "                         |  |  |  |  |  |  |  |  |  |  |    ";
+    line[3] = "                          --    --    --    --    --    --- ";
+    line[4] = "                       15    14    13    12    11    10    |";
+    print_t(-1, -1, 21);
     msleep(100);
 
 
     clear();
     refresh();
-    line_n10= "                       t2   SYNC   S0    S1    S2   Vcc     "; 
-    line_n9 = "                 --    --    --    --    --    --    --     ";
-    line_n8 = "                   |  |  |  |  |  |  |  |  |  |  |  |  |    ";
-    line_n7 = "                    --    --    --    --    --    --    --- ";
-    line_n6 = "                       15    14    13    12    11    10    |";
-    print_8008_();
-    refresh();
+    line[0] = "                       t2   SYNC   S0    S1    S2   Vcc     "; 
+    line[1] = "                 --    --    --    --    --    --    --     ";
+    line[2] = "                   |  |  |  |  |  |  |  |  |  |  |  |  |    ";
+    line[3] = "                    --    --    --    --    --    --    --- ";
+    line[4] = "                       15    14    13    12    11    10    |";
+    print_t(-1, -1, 21);
     msleep(100);
 
 
     clear();
     refresh();
-    line_n10= "                 t1    t2   SYNC   S0    S1    S2   Vcc     "; 
-    line_n9 = "                 --    --    --    --    --    --    --     ";
-    line_n8 = "                   |  |  |  |  |  |  |  |  |  |  |  |  |    ";
-    line_n7 = "                    --    --    --    --    --    --    --- ";
-    line_n6 = "                 16    15    14    13    12    11    10    |";
-    print_8008_();
-    refresh();
+    line[0] = "                 t1    t2   SYNC   S0    S1    S2   Vcc     "; 
+    line[1] = "                 --    --    --    --    --    --    --     ";
+    line[2] = "                   |  |  |  |  |  |  |  |  |  |  |  |  |    ";
+    line[3] = "                    --    --    --    --    --    --    --- ";
+    line[4] = "                 16    15    14    13    12    11    10    |";
+    print_t(-1, -1, 21);
     msleep(100);
 
 
     clear();
     refresh();
-    line_n10= "                 t1    t2   SYNC   S0    S1    S2   Vcc     "; 
-    line_n9 = "           --    --    --    --    --    --    --    --     ";
-    line_n8 = "             |  |  |  |  |  |  |  |  |  |  |  |  |  |  |    ";
-    line_n7 = "              --    --    --    --    --    --    --    --- ";
-    line_n6 = "                 16    15    14    13    12    11    10    |";
-    print_8008_();
-    refresh();
+    line[0] = "                 t1    t2   SYNC   S0    S1    S2   Vcc     "; 
+    line[1] = "           --    --    --    --    --    --    --    --     ";
+    line[2] = "             |  |  |  |  |  |  |  |  |  |  |  |  |  |  |    ";
+    line[3] = "              --    --    --    --    --    --    --    --- ";
+    line[4] = "                 16    15    14    13    12    11    10    |";
+    print_t(-1, -1, 21);
     msleep(100);
 
 
     clear();
     refresh();
-    line_n10= "          READY  t1    t2   SYNC   S0    S1    S2   Vcc     "; 
-    line_n9 = "           --    --    --    --    --    --    --    --     ";
-    line_n8 = "             |  |  |  |  |  |  |  |  |  |  |  |  |  |  |    ";
-    line_n7 = "              --    --    --    --    --    --    --    --- ";
-    line_n6 = "                 16    15    14    13    12    11    10    |";
-    print_8008_();
-    refresh();
+    line[0] = "          READY  t1    t2   SYNC   S0    S1    S2   Vcc     "; 
+    line[1] = "           --    --    --    --    --    --    --    --     ";
+    line[2] = "             |  |  |  |  |  |  |  |  |  |  |  |  |  |  |    ";
+    line[3] = "              --    --    --    --    --    --    --    --- ";
+    line[4] = "           17    16    15    14    13    12    11    10    |";
+    print_t(-1, -1, 21);
     msleep(100);
 
 
     clear();
     refresh();
-    line_n10= "    INT   READY  t1    t2   SYNC   S0    S1    S2   Vcc     "; 
-    line_n9 = "     --    --    --    --    --    --    --    --    --     ";
-    line_n8 = "       |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |    ";
-    line_n7 = "        --    --    --    --    --    --    --    --    --- ";
-    line_n6 = "                 16    15    14    13    12    11    10    |";
-    print_8008_();
-    refresh();
+    line[0] = "          READY  t1    t2   SYNC   S0    S1    S2   Vcc     "; 
+    line[1] = "     --    --    --    --    --    --    --    --    --     ";
+    line[2] = "       |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |    ";
+    line[3] = "        --    --    --    --    --    --    --    --    --- ";
+    line[4] = "           17    16    15    14    13    12    11    10    |";
+    print_t(-1, -1, 21);
     msleep(100);
 
     clear();
     refresh();
-    line_n10= "    INT   READY  t1    t2   SYNC   S0    S1    S2   Vcc     "; 
-    line_n9 = "     --    --    --    --    --    --    --    --    --     ";
-    line_n8 = "    |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |    ";
-    line_n7 = " ---    --    --    --    --    --    --    --    --    --- ";
-    line_n6 = "|                16    15    14    13    12    11    10    |";
-    line_n5 = "|                                                          |";
-    line_n4 = "|        ######      ######      ######      ######        |";
-    line_n3 = "|       ##    ##    ##    ##    ##    ##    ##    ##       |";
-    line_n2 = " ---   ##      ##  ##      ##  ##      ##  ##      ##      |";
-    line_n1 = "    |   ##    ##   ##      ##  ##      ##   ##    ##       |";
-    line =    "    |    ######    ##      ##  ##      ##    ######        |";
-    line_1 =  "    |   ##    ##   ##      ##  ##      ##   ##    ##       |";
-    line_2 =  " ---   ##      ##  ##      ##  ##      ##  ##      ##      |";
-    line_3 =  "|       ##    ##    ##    ##    ##    ##    ##    ##       |";
-    line_4 =  "|        ######      ######      ######      ######        |";
-    line_5 =  "|                                                          |";
-    line_6 =  "|     1     2     3     4     5     6     7     8     9    |";
-    line_7 =  " ---    --    --    --    --    --    --    --    --    --- ";
-    line_8 =  "    |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |    ";
-    line_9 =  "     --    --    --    --    --    --    --    --    --     ";
-    line_10 = "    Vdd    D7    D6    D5    D4    D3    D2    D1    D0     ";
-    print_8008_();
+    line[0] = "    INT   READY  t1    t2   SYNC   S0    S1    S2   Vcc     "; 
+    line[1] = "     --    --    --    --    --    --    --    --    --     ";
+    line[2] = "       |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |    ";
+    line[3] = "        --    --    --    --    --    --    --    --    --- ";
+    line[4] = "     18    17    16    15    14    13    12    11    10    |";
+    print_t(-1, -1, 21);
+    msleep(100);
+
+    clear();
     refresh();
+    line[0] = "    INT   READY  t1    t2   SYNC   S0    S1    S2   Vcc     "; 
+    line[1] = "     --    --    --    --    --    --    --    --    --     ";
+    line[2] = "    |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |    ";
+    line[3] = " ---    --    --    --    --    --    --    --    --    --- ";
+    line[4] = "|    18    17    16    15    14    13    12    11    10    |";
+    line[5] = "|                                                          |";
+    line[6] = "|        ######      ######      ######      ######        |";
+    line[7] = "|       ##    ##    ##    ##    ##    ##    ##    ##       |";
+    line[8] = " ---   ##      ##  ##      ##  ##      ##  ##      ##      |";
+    line[9] = "    |   ##    ##   ##      ##  ##      ##   ##    ##       |";
+    line[10] ="    |    ######    ##      ##  ##      ##    ######        |";
+    line[11] ="    |   ##    ##   ##      ##  ##      ##   ##    ##       |";
+    line[12] =" ---   ##      ##  ##      ##  ##      ##  ##      ##      |";
+    line[13] ="|       ##    ##    ##    ##    ##    ##    ##    ##       |";
+    line[14] ="|        ######      ######      ######      ######        |";
+    line[15] ="|                                                          |";
+    line[16] ="|     1     2     3     4     5     6     7     8     9    |";
+    line[17] =" ---    --    --    --    --    --    --    --    --    --- ";
+    line[18] ="    |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |    ";
+    line[19] ="     --    --    --    --    --    --    --    --    --     ";
+    line[20] ="    Vdd    D7    D6    D5    D4    D3    D2    D1    D0     ";
+    print_t(-1, -1, 21);
     msleep(1000);
 
 
@@ -709,80 +620,69 @@ void intro () {
 
     clear();
     refresh();
-    print_info();
-    refresh();
+    print_t(5, 10, 21);
     msleep(300);
 
 
     clear();
     refresh();
-    line_n10 = "    INT   READY  t1    t2   SYNC   S0    S1    S2   Vcc     \t\t\t\t\t\t\t\t  INTeL CORPORATION";
-    print_info();
-    refresh();
+    line[0] = "    INT   READY  t1    t2   SYNC   S0    S1    S2   Vcc     \t\t\t\t\t\t\t\t  INTeL CORPORATION";
+    print_t(5, 10, 21);
     msleep(300);
 
 
     clear();
     refresh();
-    line_n6 = "|                16    15    14    13    12    11    10    |\t\t\t\t\t\t * 8 Bit Parallel CPU on a Single Chip";
-    print_info();
-    refresh();
+    line[4] = "|    18    17    16    15    14    13    12    11    10    |\t\t\t\t\t\t * 8 Bit Parallel CPU on a Single Chip";
+    print_t(5, 10, 21);
     msleep(300);
 
     clear();
     refresh();
-    line_n4 = "|        ######      ######      ######      ######        |\t\t\t\t\t\t * 48 Instructions, Data Oriented";
-    print_info();
-    refresh();
+    line[6] = "|        ######      ######      ######      ######        |\t\t\t\t\t\t * 48 Instructions, Data Oriented";
+    print_t(5, 10, 21);
     msleep(300);
 
     clear();
     refresh();
-    line_n2 = " ---   ##      ##  ##      ##  ##      ##  ##      ##      |\t\t\t\t\t\t * Complete Instruction Decoding and Control Included";
-    print_info();
-    refresh();
+    line[8] = " ---   ##      ##  ##      ##  ##      ##  ##      ##      |\t\t\t\t\t\t * Complete Instruction Decoding and Control Included";
+    print_t(5, 10, 21);
     msleep(300);
 
     clear();
     refresh();
-    line =    "    |    ######    ##      ##  ##      ##    ######        |\t\t\t\t\t\t * Instruction Cycle Time - 20 us";
-    print_info();
-    refresh();
+    line[10] =    "    |    ######    ##      ##  ##      ##    ######        |\t\t\t\t\t\t * Instruction Cycle Time - 20 us";
+    print_t(5, 10, 21);
     msleep(300);
 
     clear();
     refresh();
-    line_2 =  " ---   ##      ##  ##      ##  ##      ##  ##      ##      |\t\t\t\t\t\t * TTL Compatible";
-    print_info();
-    refresh();
+    line[12] =  " ---   ##      ##  ##      ##  ##      ##  ##      ##      |\t\t\t\t\t\t * TTL Compatible";
+    print_t(5, 10, 21);
     msleep(300);
 
     clear();
     refresh();
-    line_4 =  "|        ######      ######      ######      ######        |\t\t\t\t\t\t * Directly addresses 16K x 8 bit of memory (RAM. ROM or S.R.)";
-    print_info();
-    refresh();
+    line[14] =  "|        ######      ######      ######      ######        |\t\t\t\t\t\t * Directly addresses 16K x 8 bit of memory (RAM. ROM or S.R.)";
+    print_t(5, 10, 21);
     msleep(300);
 
     clear();
     refresh();
-    line_6 =  "|     1     2     3     4     5     6     7     8     9    |\t\t\t\t\t\t * Contains seven 8-bit registers";
-    print_info();
-    refresh();
+    line[16] =  "|     1     2     3     4     5     6     7     8     9    |\t\t\t\t\t\t * Contains seven 8-bit registers";
+    print_t(5, 10, 21);
     msleep(300);
 
     clear();
     refresh();
-    line_8 =  "    |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |    \t\t\t\t\t\t * Interrupt Capability";
-    print_info();
-    refresh();
+    line[18] =  "    |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |    \t\t\t\t\t\t * Interrupt Capability";
+    print_t(5, 10, 21);
     msleep(300);
 
     clear();
     refresh();
-    line_10 =  "    Vdd    D7    D6    D5    D4    D3    D2    D1    D0     \t\t\t\t\t\t * Packaged in 18-Pin DIP";
-    print_info();
-    refresh();
+    line[20] =  "    Vdd    D7    D6    D5    D4    D3    D2    D1    D0     \t\t\t\t\t\t * Packaged in 18-Pin DIP";
+    print_t(5, 10, 21);
     msleep(300);
 
     mvwprintw(stdscr, 27, 71, "\t\t\t\t\t\t * Address stack contains 8 14-bit registers");
@@ -799,16 +699,18 @@ void intro () {
     mvwprintw(stdscr, 45, 100,  "Press any key... %d, %d" , row, col);
     refresh();
 
-
-
     getch();
-} 
+}
+
+
 
 void emu_interface() {
     clear();
     refresh();
 
-    
+    print_logo();
+    print_CPU();
+
 
     getch();
 }
@@ -822,7 +724,7 @@ void tui () {
     start_color();
     getmaxyx(stdscr, row, col);
 
-    intro();
+    intro(); //  fior skipping it in dev time
     emu_interface();
 
     endwin();              
