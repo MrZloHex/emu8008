@@ -1,8 +1,7 @@
 #include "tui.h"
-#include "cpu.h"
 
 int main (void) {
-    cpu();
+    //cpu();
 	tui();
     return 0;
 }
